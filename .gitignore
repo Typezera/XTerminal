@@ -1,0 +1,9 @@
+.vscode/
+
+
+#binarios compilados
+main    
+
+*.o
+
+*.out
