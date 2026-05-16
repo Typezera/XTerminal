@@ -12,8 +12,13 @@ int commands_keyword_user(){
 
    char *command = strtok(buffer_commands_user, " ");
 
-   printf("%s", buffer_commands_user);
+   printf("%s\n", buffer_commands_user);
+
+   do
+   {
+      printf("command: %s\n", command);
+   } while (command = strtok(NULL, " "));
+   
 
 
-   printf("%c", *command);
 }
