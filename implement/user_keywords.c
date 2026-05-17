@@ -1,24 +1,29 @@
 #include "user_keywords.h"
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 int commands_keyword_user(){
-   char buffer_commands_user[100];
+   char buffer_keywords_user[100];
+   char *buffer_commands[10];
+   int i = 0;
 
    printf(">");// captura os comando do usuário
-   fgets(buffer_commands_user, sizeof(buffer_commands_user), stdin);
+   fgets(buffer_keywords_user, sizeof(buffer_keywords_user), stdin);
 
-   buffer_commands_user[strcspn(buffer_commands_user, "\n")] = '\0';
+   buffer_keywords_user[strcspn(buffer_keywords_user, "\n")] = '\0';
 
-   char *command = strtok(buffer_commands_user, " ");
+   char *command = strtok(buffer_keywords_user, " ");
 
-   printf("%s\n", buffer_commands_user);
+   printf("%s\n", buffer_keywords_user);
 
-   do
+   while (command != NULL)
    {
-      printf("command: %s\n", command);
-   } while (command = strtok(NULL, " "));
-   
+      buffer_commands[i++] = command;
+      command = strtok(NULL, " ");
+   }
 
+   buffer_commands[i] = NULL;
 
+   execvp(buffer_commands[0], buffer_commands);
 }
