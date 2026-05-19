@@ -1,14 +1,14 @@
 #include "user_keywords.h"
 #include <stdio.h>
 #include <string.h>
-#include <unistd.h>
+#include "created_process.h"
 
 int commands_keyword_user(){
    char buffer_keywords_user[100];
-   char *buffer_commands[10];
+   char *buffer_commands[100];
    int i = 0;
 
-   printf(">");// captura os comando do usuário
+   
    fgets(buffer_keywords_user, sizeof(buffer_keywords_user), stdin);
 
    buffer_keywords_user[strcspn(buffer_keywords_user, "\n")] = '\0';
@@ -16,6 +16,8 @@ int commands_keyword_user(){
    char *command = strtok(buffer_keywords_user, " ");
 
    printf("%s\n", buffer_keywords_user);
+
+  // pid_t pid = fork();
 
    while (command != NULL)
    {
@@ -25,5 +27,7 @@ int commands_keyword_user(){
 
    buffer_commands[i] = NULL;
 
-   execvp(buffer_commands[0], buffer_commands);
+   created_process_fork(buffer_commands);
+
+
 }
