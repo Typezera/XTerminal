@@ -8,8 +8,6 @@
 int created_process_fork(char **buffer_commands){
     pid_t process = fork();
 
-    // char *args[] = {"-las", "-l", "-a", "--help"};
-
     if (process < 0)
     {
         printf("[Error] Ocorreu algum problema na criação do fork!");
