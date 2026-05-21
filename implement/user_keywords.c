@@ -1,5 +1,6 @@
 #include "user_keywords.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include "created_process.h"
@@ -19,8 +20,6 @@ int commands_keyword_user()
    char *arg = strtok(NULL, " ");
 
    printf("%s\n", buffer_keywords_user);
-
-   // pid_t pid = fork();
 
    while (command != NULL)
    {
@@ -44,6 +43,11 @@ int commands_keyword_user()
          }
       }
    }
+   if (first_command != NULL && strcmp(first_command, "exit") == 0)
+   {
+      exit(1);
+   }
+
    else
    {
       created_process_fork(buffer_commands);
