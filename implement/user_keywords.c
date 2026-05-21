@@ -24,10 +24,12 @@ int commands_keyword_user()
    while (command != NULL)
    {
       buffer_commands[i++] = command;
+      buffer_commands[i++] = arg;
       command = strtok(NULL, " ");
    }
 
    buffer_commands[i] = NULL;
+   // created_process_fork(buffer_commands);
 
    if (first_command != NULL && strcmp(first_command, "cd") == 0)
    {
@@ -47,7 +49,6 @@ int commands_keyword_user()
    {
       exit(1);
    }
-
    else
    {
       created_process_fork(buffer_commands);
